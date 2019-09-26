@@ -1,12 +1,16 @@
 class PostsController < ApplicationController
 
-  def index
-    @posts = Post.all
+  def posts_index
+    @author = Author.find(params[:id])
+    @posts = @author.posts
+    render template: 'posts/index'
   end
 
-  def show
-    @post = Post.find(params[:id])
-  end
+  def post
+   @author = Author.find(params[:id])
+   @post = Post.find(params[:post_id])
+   render template: 'posts/show'
+ end
 
   def new
     @post = Post.new
